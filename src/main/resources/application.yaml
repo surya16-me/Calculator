@@ -1,0 +1,7 @@
+server:
+  port: 9090
+
+person:
+  name:
+    first: Surya
+    last: Pratama
