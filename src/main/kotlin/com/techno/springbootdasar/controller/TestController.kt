@@ -7,6 +7,7 @@ import com.techno.springbootdasar.domain.dto.response.ResFullNameDto
 import com.techno.springbootdasar.domain.dto.response.ResIdentitasDto
 import com.techno.springbootdasar.domain.dto.response.ResNumberDto
 import com.techno.springbootdasar.service.LogicService
+import com.thedeanda.lorem.LoremIpsum
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.ResponseEntity
@@ -86,6 +87,24 @@ class TestController(
         return ResponseEntity.ok().body(response)
     }
 
+    @GetMapping("/random/name")
+    fun getRandomName(@RequestParam("size") size : Int): ResponseEntity<ResBaseDto<ArrayList<ResFullNameDto>>> {
+        val lorem = LoremIpsum.getInstance()
+
+        val result = ArrayList<ResFullNameDto>()
+        for (i in 1..size){
+            val firstName = lorem.firstName
+            val lastName = lorem.lastName
+            val fullNameTemp = "$firstName $lastName"
+
+            val fullName = ResFullNameDto(firstName, lastName, fullNameTemp)
+            result.add(fullName)
+        }
+
+        val response = ResBaseDto(data = result)
+
+        return ResponseEntity.ok().body(response)
+    }
     @PostMapping("/calculator/{operation}")
     fun getCalc(@PathVariable operation: String, @RequestBody reqNumberDto: ReqNumberDto): ResponseEntity<ResBaseDto<ResNumberDto>> {
         val response = logicService.countNumber(reqNumberDto, operation)
