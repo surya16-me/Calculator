@@ -6,11 +6,14 @@ import com.techno.springbootdasar.domain.dto.response.ResMahasiswaDto
 import com.techno.springbootdasar.domain.dto.response.ResProdiDto
 import com.techno.springbootdasar.domain.entity.MahasiswaEntity
 import com.techno.springbootdasar.domain.entity.ProdiEntity
+import com.techno.springbootdasar.exception.CustomExceptionHandler
 import com.techno.springbootdasar.repository.MahasiswaRepository
 import com.techno.springbootdasar.repository.ProdiRepository
 import com.techno.springbootdasar.service.CrudService
+import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Service
 import java.util.*
+import javax.xml.ws.Response
 import kotlin.collections.ArrayList
 
 @Service
@@ -52,6 +55,11 @@ class CrudServiceImpl (
 
     override fun insert(reqMahasiswaDto: ReqMahasiswaDto): ResBaseDto<Any> {
         val prodiEntity = prodiRepository.findById(UUID.fromString(reqMahasiswaDto.idProdi)) ?: return ResBaseDto(false, "Data not Found", null)
+        if (reqMahasiswaDto.nim == null) {
+            throw CustomExceptionHandler("NIM Can't be null")
+        }
+
+
         val data = MahasiswaEntity(
             nim = reqMahasiswaDto.nim,
             nama = reqMahasiswaDto.nama,

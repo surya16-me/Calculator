@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import javax.validation.Valid
 
 
 @RestController
@@ -28,31 +29,31 @@ class CrudController (
     }
 
     @GetMapping("/mahasiswa/{id}")
-    fun getById(@PathVariable("id") id: Long): ResponseEntity<ResBaseDto<ResMahasiswaDto>> {
+    fun getById(@Valid @PathVariable("id") id: Long): ResponseEntity<ResBaseDto<ResMahasiswaDto>> {
         val response = crudService.getById(id)
         return ResponseEntity.ok().body(response)
     }
 
     @PostMapping("/mahasiswa")
-    fun insert(@RequestBody reqMahasiswaDto: ReqMahasiswaDto): ResponseEntity<ResBaseDto<Any>> {
+    fun insert(@Valid @RequestBody reqMahasiswaDto: ReqMahasiswaDto): ResponseEntity<ResBaseDto<Any>> {
         val response = crudService.insert(reqMahasiswaDto)
         return ResponseEntity.ok().body(response)
     }
 
     @PutMapping("/mahasiswa/{id}")
-    fun update(@PathVariable("id") id : Long, @RequestBody reqMahasiswaDto: ReqMahasiswaDto): ResponseEntity<ResBaseDto<Any>> {
+    fun update(@Valid @PathVariable("id") id : Long, @RequestBody reqMahasiswaDto: ReqMahasiswaDto): ResponseEntity<ResBaseDto<Any>> {
         val response = crudService.update(reqMahasiswaDto, id)
         return ResponseEntity.ok().body(response)
     }
 
     @DeleteMapping("/mahasiswa/{id}")
-    fun delete(@PathVariable("id") id: Long): ResponseEntity<ResBaseDto<Any>> {
+    fun delete(@Valid @PathVariable("id") id: Long): ResponseEntity<ResBaseDto<Any>> {
         val response = crudService.delete(id)
         return ResponseEntity.ok().body(response)
     }
 
     @PostMapping("/prodi")
-    fun insertProdi(@RequestBody reqProdiDto: ReqProdiDto): ResponseEntity<ResBaseDto<Any>> {
+    fun insertProdi(@Valid @RequestBody reqProdiDto: ReqProdiDto): ResponseEntity<ResBaseDto<Any>> {
         val response = crudService.insertProdi(reqProdiDto.nama!!)
         return ResponseEntity.ok().body(response)
     }
