@@ -7,12 +7,20 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.MethodArgumentNotValidException
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
-import java.lang.Exception
 import java.lang.RuntimeException
+import kotlin.Exception
 
 @ControllerAdvice
 @Order(Ordered.HIGHEST_PRECEDENCE)
 class ErrorHandler {
+
+    @ExceptionHandler(Exception::class)
+    fun handlerException(exception: Exception): ResponseEntity<ResBaseDto<String>> {
+        println("ERROR GENERAL")
+        exception.printStackTrace()
+        val response = (ResBaseDto(false, "Something went wrong", null, 400, exception.message))
+        return ResponseEntity.badRequest().body(response)
+    }
 
     @ExceptionHandler(MethodArgumentNotValidException::class)
     fun handlerArgumentNotValidException(exception:

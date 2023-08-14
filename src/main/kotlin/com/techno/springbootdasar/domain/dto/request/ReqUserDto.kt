@@ -1,6 +1,6 @@
 package com.techno.springbootdasar.domain.dto.request
 
-import com.techno.springboot.dasar.domain.validation.CustomFieldValidation
+import com.techno.springbootdasar.domain.validation.CustomFieldValidation
 import javax.validation.constraints.NotEmpty
 import javax.validation.constraints.NotNull
 import javax.validation.constraints.Pattern
@@ -14,7 +14,6 @@ data class ReqUserDto(
     @field:NotNull(message = "Field Username Can't be Null!!")
     @field:NotEmpty(message = "Field Username Can't be Empty!!")
     @field:Size(max = 32, message = "The field length must be at most 32 characters.")
-    @field:CustomFieldValidation(message = "Username is already taken!!")
     val username: String? = null,
 
     @field:NotNull(message = "Field email Can't be Null!!")

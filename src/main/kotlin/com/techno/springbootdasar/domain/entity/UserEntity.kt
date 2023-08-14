@@ -16,7 +16,7 @@ data class UserEntity (
     @field:Column(name = "name", columnDefinition = "varchar")
     val name : String? = null,
 
-    @field:Column(name = "username", columnDefinition = "varchar")
+    @field:Column(name = "username", unique = true ,columnDefinition = "varchar")
     val username : String? = null,
 
     @field:Column(name = "email", columnDefinition = "varchar")

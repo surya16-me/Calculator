@@ -1,6 +1,6 @@
 package com.techno.springbootdasar.domain.validation.validator
 
-import com.techno.springboot.dasar.domain.validation.CustomClassValidation
+import com.techno.springbootdasar.domain.validation.CustomClassValidation
 import com.techno.springbootdasar.domain.dto.request.ReqUserDto
 import javax.validation.ConstraintValidator
 import javax.validation.ConstraintValidatorContext

@@ -1,6 +1,6 @@
 package com.techno.springbootdasar.domain.validation.validator
 
-import com.techno.springboot.dasar.domain.validation.CustomFieldValidation
+import com.techno.springbootdasar.domain.validation.CustomFieldValidation
 import com.techno.springbootdasar.repository.UserRepository
 import org.springframework.stereotype.Component
 import javax.validation.ConstraintValidator

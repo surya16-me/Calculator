@@ -1,4 +1,4 @@
-package com.techno.springboot.dasar.domain.validation
+package com.techno.springbootdasar.domain.validation
 
 import com.techno.springbootdasar.domain.validation.validator.FieldValidator
 import java.lang.annotation.Documented
