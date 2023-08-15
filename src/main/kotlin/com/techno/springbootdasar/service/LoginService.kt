@@ -7,4 +7,5 @@ import com.techno.springbootdasar.domain.dto.response.ResBaseDto
 interface LoginService {
     fun login(reqLoginDto: ReqLoginDto): ResBaseDto<Any>
     fun validateUserLogin(reqValidateLoginDto: ReqValidateLoginDto): ResBaseDto<Any>
+    fun validateToken(auth: String) : Boolean
 }
